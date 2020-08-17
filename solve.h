@@ -183,3 +183,82 @@ int LIS(vector<int> v)
 	}
 	return amax[amax.size() - 1];
 }
+
+//11.
+int maxArea(vector<int>& height) 
+{
+	int i, j;
+	int maxvalue = 0;
+	for (i = 0; i < height.size(); i++)
+	{
+		for (j = i + 1; j < height.size(); j++)
+		{
+			if ((j - i) * min(height[j], height[i]) > maxvalue)
+				maxvalue = (j - i) * min(height[j], height[i]);
+		}
+	}
+	return maxvalue;
+}
+//11.Ë«Ö¸Õë
+int maxArea_1(vector<int>& height)
+{
+	int i = 0 , j = height.size() - 1;
+	int maxarea = 0;
+	while (i < j)
+	{
+		if ((j - i) * min(height[i], height[j]) > maxarea)
+			maxarea = (j - i) * min(height[i], height[j]);
+		if (height[i] > height[j])
+			j--;
+		else
+			i++;
+	}
+	return maxarea;
+}
+
+//12.
+vector<vector<int>> threeSum(vector<int>& nums) 
+{
+	vector<vector<int>> rv;
+	int i, j, k;
+	sort(nums.begin(), nums.end());
+	for (i = 0; i < nums.size(); i++)
+	{
+		j = 0;
+		k = nums.size() - 1;
+		while (j < k)
+		{
+			if (nums[i] + nums[j] + nums[k] > 0)
+			{
+				k--;
+			}
+			else if (nums[i] + nums[j] + nums[k] < 0)
+			{
+				j++;
+			}
+			else
+			{
+				if (j != i && k != i)
+				{
+					vector<int> temp(3);
+					temp[0] = (nums[i]);
+					temp[1] = (nums[j]);
+					temp[2] = (nums[k]);
+					nums.erase(nums.begin() + i);
+					nums.erase(nums.begin() + j);
+					nums.erase(nums.begin() + k);
+					rv.push_back(temp);
+				}
+				else if (j == i)
+				{
+					j++;
+				}
+				else
+				{
+					k--;
+				}
+			}
+		}
+	}
+	return rv;
+}

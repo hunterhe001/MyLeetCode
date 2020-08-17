@@ -11,10 +11,11 @@
 #include "LeetCode.h"
 #include <unordered_map>
 
-int main()
-{
-	string s = longestPalindrome("abcdbbfcba");
-	cout << s << endl;
+
+//int main()
+//{
+	/*string s = longestPalindrome("abcdbbfcba");
+	cout << s << endl;*/
 
 
 
@@ -62,7 +63,7 @@ int main()
 	nums.push_back(2); nums.push_back(7); nums.push_back(11); nums.push_back(15);
 	v2 = twoSum(nums, 9);
 	cout << v2[0] << ' ' << v2[1];
-	*/
+	*//*/
 
 	//建立一个邻接矩阵
 	/*
@@ -725,7 +726,7 @@ int main()
 
 
 
-
+/*
 
 
 
@@ -733,6 +734,7 @@ int main()
 
 
 }
+*/
 
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
