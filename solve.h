@@ -4,6 +4,7 @@
 #include<queue>
 #include<vector>
 #include<unordered_set>
+#include<unordered_map>
 //#include<math>
 using namespace std;
 
@@ -223,41 +224,45 @@ vector<vector<int>> threeSum(vector<int>& nums)
 	vector<vector<int>> rv;
 	int i, j, k;
 	sort(nums.begin(), nums.end());
-	unordered_set<int> hashset;
+	//unordered_set<int> hashset;
 	for (i = 0; i < nums.size(); i++)
 	{
-		if (hashset.find(nums[i]) != hashset.end())
+		if (i >= 1 && nums[i] == nums[i - 1])
 		{
 			continue;
 		}
-		hashset.insert(nums[i]);
-		j = 0;
+		j = i + 1;
 		k = nums.size() - 1;
-		while (j <= i - 1 || k >= i + 1)
+		while (j < k)
 		{
+			
 			if (nums[i] + nums[j] + nums[k] > 0)
 			{
-				if (k > i + 1)
-				{
-					k--;
-				}
+				
+				k--;
+				
 			}
 			else if (nums[i] + nums[j] + nums[k] < 0)
 			{
-				if (j < i - 1)
-				{
-					j++;
-				}
+				
+				j++;
+				
 			}
 			else
 			{
-				if (!((i > j) && (j < k)))
-				{
-					vector<int> temp(3);
-					temp[0] = (nums[i]);
-					temp[1] = (nums[j]);
-					temp[2] = (nums[k]);
-					rv.push_back(temp);
+				
+				vector<int> temp(3);
+				temp[0] = (nums[i]);
+				temp[1] = (nums[j]);
+				temp[2] = (nums[k]);
+				rv.push_back(temp);
+				// 跳过重复值
+				while (j < k && nums[j] == nums[j + 1]) {
+					j++;
+				}
+				// 同上
+				while (j < k && nums[k] == nums[k - 1]) {
+					k--;
 				}
 				j++;
 				k--;
@@ -266,3 +271,40 @@ vector<vector<int>> threeSum(vector<int>& nums)
 	}
 	return rv;
 }
+
+//17.
+vector<string> letterCombinations(string digits) 
+{
+	unordered_map<char, vector<char>> hashmap;
+	unordered_set<string> hashset;
+	vector<char> f2{ 'a', 'b', 'c' };
+	vector<char> f3{ 'd', 'e', 'f' };
+	vector<char> f4{ 'g', 'h', 'i' };
+	vector<char> f5{ 'j', 'k', 'l' };
+	vector<char> f6{ 'm', 'n', 'o' };
+	vector<char> f7{ 'p', 'q', 'r', 's'};
+	vector<char> f8{ 't', 'u', 'v' };
+	vector<char> f9{ 'w', 'x', 'y', 'z'};
+	hashmap['2'] = f2;
+	hashmap['3'] = f3;
+	hashmap['4'] = f4;
+	hashmap['5'] = f5;
+	hashmap['6'] = f6;
+	hashmap['7'] = f7;
+	hashmap['8'] = f8;
+	hashmap['9'] = f9;
+	int i, j;	
+	for (j = 0; j < 4; j++)
+	{
+		string temp;
+		for (i = 0; i < digits.size(); i++)
+		{
+			if (hashmap[digits[i]].size() >= j)
+			{
+				temp += hashmap[digits[i]][j];
+			}
+		}
+		
+	}
+
+	
