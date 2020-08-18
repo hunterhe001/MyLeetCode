@@ -3,6 +3,7 @@
 #include<iostream>
 #include<queue>
 #include<vector>
+#include<unordered_set>
 //#include<math>
 using namespace std;
 
@@ -216,47 +217,50 @@ int maxArea_1(vector<int>& height)
 	return maxarea;
 }
 
-//12.
+//15.
 vector<vector<int>> threeSum(vector<int>& nums) 
 {
 	vector<vector<int>> rv;
 	int i, j, k;
 	sort(nums.begin(), nums.end());
+	unordered_set<int> hashset;
 	for (i = 0; i < nums.size(); i++)
 	{
+		if (hashset.find(nums[i]) != hashset.end())
+		{
+			continue;
+		}
+		hashset.insert(nums[i]);
 		j = 0;
 		k = nums.size() - 1;
-		while (j < k)
+		while (j <= i - 1 || k >= i + 1)
 		{
 			if (nums[i] + nums[j] + nums[k] > 0)
 			{
-				k--;
+				if (k > i + 1)
+				{
+					k--;
+				}
 			}
 			else if (nums[i] + nums[j] + nums[k] < 0)
 			{
-				j++;
+				if (j < i - 1)
+				{
+					j++;
+				}
 			}
 			else
 			{
-				if (j != i && k != i)
+				if (!((i > j) && (j < k)))
 				{
 					vector<int> temp(3);
 					temp[0] = (nums[i]);
 					temp[1] = (nums[j]);
 					temp[2] = (nums[k]);
-					nums.erase(nums.begin() + i);
-					nums.erase(nums.begin() + j);
-					nums.erase(nums.begin() + k);
 					rv.push_back(temp);
 				}
-				else if (j == i)
-				{
-					j++;
-				}
-				else
-				{
-					k--;
-				}
+				j++;
+				k--;
 			}
 		}
 	}
