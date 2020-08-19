@@ -273,38 +273,48 @@ vector<vector<int>> threeSum(vector<int>& nums)
 }
 
 //17.
-vector<string> letterCombinations(string digits) 
+void dfs(int index)
 {
-	unordered_map<char, vector<char>> hashmap;
-	unordered_set<string> hashset;
-	vector<char> f2{ 'a', 'b', 'c' };
-	vector<char> f3{ 'd', 'e', 'f' };
-	vector<char> f4{ 'g', 'h', 'i' };
-	vector<char> f5{ 'j', 'k', 'l' };
-	vector<char> f6{ 'm', 'n', 'o' };
-	vector<char> f7{ 'p', 'q', 'r', 's'};
-	vector<char> f8{ 't', 'u', 'v' };
-	vector<char> f9{ 'w', 'x', 'y', 'z'};
-	hashmap['2'] = f2;
-	hashmap['3'] = f3;
-	hashmap['4'] = f4;
-	hashmap['5'] = f5;
-	hashmap['6'] = f6;
-	hashmap['7'] = f7;
-	hashmap['8'] = f8;
-	hashmap['9'] = f9;
-	int i, j;	
-	for (j = 0; j < 4; j++)
-	{
-		string temp;
-		for (i = 0; i < digits.size(); i++)
-		{
-			if (hashmap[digits[i]].size() >= j)
-			{
-				temp += hashmap[digits[i]][j];
-			}
-		}
-		
-	}
+
+}
+vector<string> letterCombinations(string digits)
+{
+
+}
+//vector<string> letterCombinations(string digits)
+//{
+//	unordered_map<char, vector<char>> hashmap;
+//	unordered_set<string> hashset;
+//	vector<char> f2{ 'a', 'b', 'c' };
+//	vector<char> f3{ 'd', 'e', 'f' };
+//	vector<char> f4{ 'g', 'h', 'i' };
+//	vector<char> f5{ 'j', 'k', 'l' };
+//	vector<char> f6{ 'm', 'n', 'o' };
+//	vector<char> f7{ 'p', 'q', 'r', 's' };
+//	vector<char> f8{ 't', 'u', 'v' };
+//	vector<char> f9{ 'w', 'x', 'y', 'z' };
+//	hashmap['2'] = f2;
+//	hashmap['3'] = f3;
+//	hashmap['4'] = f4;
+//	hashmap['5'] = f5;
+//	hashmap['6'] = f6;
+//	hashmap['7'] = f7;
+//	hashmap['8'] = f8;
+//	hashmap['9'] = f9;
+//	int i, j;
+//	for (j = 0; j < 4; j++)
+//	{
+//		string temp;
+//		for (i = 0; i < digits.size(); i++)
+//		{
+//			if (hashmap[digits[i]].size() >= j)
+//			{
+//				temp += hashmap[digits[i]][j];
+//			}
+//		}
+//
+//	}
+//	return 
+//}
 
 	
