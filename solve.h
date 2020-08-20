@@ -273,62 +273,128 @@ vector<vector<int>> threeSum(vector<int>& nums)
 }
 
 //17.
+class letterCombinations {
+public:
+	string digits;
+	vector<string> rv;
+	string comt;
+	unordered_map<char, vector<char>> hashmap;
+	letterCombinations()
+	{
+		comt = "";
+		hashmap =
+		{ {'2', {'a', 'b', 'c'}},
+		{'3', {'d', 'e', 'f'}},
+		{'4', {'g', 'h', 'i'}},
+		{'5', {'j', 'k', 'l'}},
+		{'6', {'m', 'n', 'o'}},
+		{'7', {'p', 'q', 'r', 's'}},
+		{'8', {'t', 'u', 'v', 'w'}},
+		{'9', {'x', 'y', 'z'}} };
+	}
+	
+	void dfs(string comt, int index)
+	{
+		if (index == digits.size())
+		{
+			rv.push_back(comt);
+			//comt = "";
+			return;
+		}
+		int i, j;
+		for (j = 0; j < (hashmap[digits[index]]).size(); j++)
+		{
+			dfs(comt += hashmap[digits[index]][j], index + 1);
+			comt.pop_back();
+		}
+	}
+	/*vector<string> letterCombinations(string digits) {
+
+	}*/
+
+};
+//17
 class Solution {
 public:
 	string digits;
 	vector<string> rv;
+	string comt;
+	unordered_map<char, vector<char>> hashmap;
+	Solution()
+	{
+		comt = "";
+		hashmap =
+		{ {'2', {'a', 'b', 'c'}},
+		{'3', {'d', 'e', 'f'}},
+		{'4', {'g', 'h', 'i'}},
+		{'5', {'j', 'k', 'l'}},
+		{'6', {'m', 'n', 'o'}},
+		{'7', {'p', 'q', 'r', 's'}},
+		{'8', {'t', 'u', 'v'}},
+		{'9', {'w', 'x', 'y', 'z'}} };
+	}
+	vector<string> letterCombinations(string digits) {
+		if (digits.size() == 0)
+			return rv;
+		dfs("", 0);
+		return rv;
+	}
 	void dfs(string comt, int index)
 	{
-		if (index == digits.size() - 1)
+		if (index == digits.size())
 		{
 			rv.push_back(comt);
+			//comt = "";
 			return;
 		}
 		int i, j;
-		for (j = 0; j < 4; j++)
+		for (j = 0; j < (hashmap[digits[index]]).size(); j++)
 		{
-			string temp;
-			for (i = 0; i < digits.size(); i++)
-			{
-				if (hashmap[digits[i]].size() >= j)
-				{
-					temp += hashmap[digits[i]][j];
-				}
-			}
-
+			dfs(comt += hashmap[digits[index]][j], index + 1);
+			comt.pop_back();
 		}
-		return;
 	}
-	vector<string> letterCombinations(string digits) {
-
-	}
-
 };
-//void dfs(int index)
-//{
-//
-//}
-vector<string> letterCombinations(string digits)
-{
-	unordered_map<char, vector<char>> hashmap;
-	unordered_set<string> hashset;
-	vector<char> f2{ 'a', 'b', 'c' };
-	vector<char> f3{ 'd', 'e', 'f' };
-	vector<char> f4{ 'g', 'h', 'i' };
-	vector<char> f5{ 'j', 'k', 'l' };
-	vector<char> f6{ 'm', 'n', 'o' };
-	vector<char> f7{ 'p', 'q', 'r', 's' };
-	vector<char> f8{ 't', 'u', 'v' };
-	vector<char> f9{ 'w', 'x', 'y', 'z' };
-	hashmap['2'] = f2;
-	hashmap['3'] = f3;
-	hashmap['4'] = f4;
-	hashmap['5'] = f5;
-	hashmap['6'] = f6;
-	hashmap['7'] = f7;
-	hashmap['8'] = f8;
-	hashmap['9'] = f9;
-}
 
 
 	
+//19.
+
+// Definition for singly-linked list.
+ struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+ };
+ 
+ListNode* removeNthFromEnd(ListNode* head, int n) 
+{
+	int j = 0, sum = 0;
+	ListNode* a = head;
+	ListNode** b = &a;
+	while (*b)
+	{
+		sum++;
+		*b = (*b)->next;
+	}
+	if(sum == n)
+	{
+		return head->next;
+	}
+	int ith = sum - n;
+	ListNode* c = head;
+	ListNode** d = &c;
+	//cout << (*d)->val << endl;
+	while (j < ith - 1)
+	{
+		*d = (*d)->next;
+		j++;
+	}
+	ListNode* e = (*d)->next;
+	if (!e)
+	{
+		return NULL;
+	}
+	(*d)->next = (*d)->next->next;
+	return head;
+}

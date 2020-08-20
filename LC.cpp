@@ -7,20 +7,83 @@
 
 int main()
 {
-	//2 7 1 5 6 4 3 8 9
-	vector<int> v;
-	v.push_back(-1);
-	v.push_back(0);
-	v.push_back(1);
-	v.push_back(2);
-	v.push_back(-1);
-	v.push_back(-4);
-	/*v.push_back(8);
-	v.push_back(3);
-	v.push_back(7);*/
-	vector<vector<int>> aa = threeSum(v);
-    //cout << maxArea_1(v) << endl;
-	//cout << INT_MAX  << endl;
+	/*ListNode node1 = ListNode(1);
+	ListNode node2 = ListNode(2);
+	ListNode node3 = ListNode(3);
+	ListNode node4 = ListNode(4);
+	ListNode node5 = ListNode(5);
+	node1.next = &node2;
+	node2.next = &node3;
+	node3.next = &node4;
+	node4.next = &node5;
+	node5.next = NULL;*/
+	ListNode node1 = ListNode(1);
+	ListNode node2 = ListNode(2);
+	node1.next = &node2;
+	node2.next =NULL;
+	ListNode* head = &node1;
+	/*while (head)
+	{
+		cout << head->val << "  ";
+		head = head->next;
+	}*/
+	ListNode* d = removeNthFromEnd(head, 2);
+	while (d)
+	{
+		cout << d->val << "  ";
+		d = d->next;
+	}
+
+
+
+
+
+
+
+
+
+	/*letterCombinations l1;
+	Solution l2;
+
+	l1.digits = "23";
+	l1.dfs("", 0);
+	l1.rv;
+	cout << l1.hashmap['2'][0] << endl;*/
+	
+
+	
+	/*unordered_map<char, vector<char>> hashmap =
+	{ {'2', {'a', 'b', 'c'}},
+	{'3', {'d', 'e', 'f'}},
+	{'4', {'g', 'h', 'i'}},
+	{'5', {'j', 'k', 'l'}},
+	{'6', {'m', 'n', 'o'}},
+	{'7', {'p', 'q', 'r', 's'}},
+	{'8', {'t', 'u', 'v', 'w'}},
+	{'9', {'x', 'y', 'z'}} };
+	cout << hashmap['2'][1] << endl;*/
+
+
+
+
+
+
+
+
+	////2 7 1 5 6 4 3 8 9
+	//vector<int> v;
+	//v.push_back(-1);
+	//v.push_back(0);
+	//v.push_back(1);
+	//v.push_back(2);
+	//v.push_back(-1);
+	//v.push_back(-4);
+	///*v.push_back(8);
+	//v.push_back(3);
+	//v.push_back(7);*/
+	//vector<vector<int>> aa = threeSum(v);
+ //   //cout << maxArea_1(v) << endl;
+	////cout << INT_MAX  << endl;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
