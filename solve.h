@@ -5,6 +5,7 @@
 #include<vector>
 #include<unordered_set>
 #include<unordered_map>
+#include<stack>
 //#include<math>
 using namespace std;
 
@@ -397,4 +398,92 @@ ListNode* removeNthFromEnd(ListNode* head, int n)
 	}
 	(*d)->next = (*d)->next->next;
 	return head;
+}
+
+ListNode* removeNthFromEnd_1(ListNode* head, int n)
+{
+	ListNode* dummy = new ListNode(0);
+	dummy->next = head;
+	ListNode* l = dummy;
+	ListNode* r = dummy;
+	int sum = 0;
+	for (int i = 0; i < n + 1; i++)
+	{
+		r = r->next;
+	}
+	/*while (sum < n + 1)
+	{
+		r = r->next;
+		sum++;
+	}*/
+	while (r)
+	{
+		r = r->next;
+		l = l->next;
+	}
+	ListNode* tmp = l->next;
+	l->next = tmp->next;
+	//delete(tmp);
+	return dummy->next;
+}
+
+//20.
+bool isValid(string s)
+{
+	unordered_map<char, char> hashmap = {
+		{')', '('},{'}', '{'}, {']', '['}
+	};
+	stack<char> s1;
+	for (int i = 0; i < s.size(); i++)
+	{
+		if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+		{
+			s1.push(s[i]);
+		}
+		else
+		{
+			if (s1.empty() || s1.top() != hashmap[s[i]])
+				return false;
+			else
+				s1.pop();
+		}
+	}
+	return s1.empty();
+
+}
+
+//21.
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
+{
+	ListNode* head = new ListNode(0);
+	ListNode* dummy = head;
+	while (l1 && l2)
+	{
+		if (l1->val < l2->val)
+		{
+			head->next = l1;
+			head = head->next;
+			l1 = l1->next;
+		}
+		else
+		{
+			head->next = l2;
+			head = head->next;
+			l2 = l2->next;
+		}
+	}
+	while (l1)
+	{
+		head->next = l1;
+		l1 = l1->next;
+		head = head->next;
+	}
+	while (l2)
+	{
+		head->next = l2;
+		head = head->next;
+		l2 = l2->next;
+	}
+	head->next = NULL;
+	return dummy->next;
 }

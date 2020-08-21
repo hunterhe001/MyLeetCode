@@ -7,6 +7,34 @@
 
 int main()
 {
+	ListNode node1 = ListNode(1);
+	ListNode node2 = ListNode(2);
+	ListNode node3 = ListNode(4);
+	node1.next = &node2;
+	node2.next = &node3;
+	node3.next = NULL;
+
+	ListNode node4 = ListNode(1);
+	ListNode node5 = ListNode(3);
+	ListNode node6 = ListNode(4);
+	node4.next = &node5;
+	node5.next = &node6;
+	node6.next = NULL;
+
+	ListNode* a = mergeTwoLists(&node1, &node4);
+	while (a)
+	{
+		cout << a->val << "  ";
+		a = a->next;
+	}
+
+
+
+
+
+
+
+
 	/*ListNode node1 = ListNode(1);
 	ListNode node2 = ListNode(2);
 	ListNode node3 = ListNode(3);
@@ -17,30 +45,22 @@ int main()
 	node3.next = &node4;
 	node4.next = &node5;
 	node5.next = NULL;*/
-	ListNode node1 = ListNode(1);
+	/*ListNode node1 = ListNode(1);
 	ListNode node2 = ListNode(2);
 	node1.next = &node2;
-	node2.next =NULL;
-	ListNode* head = &node1;
+	node2.next =NULL;*/
+	/*ListNode* head = &node1;*/
 	/*while (head)
 	{
 		cout << head->val << "  ";
 		head = head->next;
 	}*/
-	ListNode* d = removeNthFromEnd(head, 2);
+	/*ListNode* d = removeNthFromEnd_1(head, 2);
 	while (d)
 	{
 		cout << d->val << "  ";
 		d = d->next;
-	}
-
-
-
-
-
-
-
-
+	}*/
 
 	/*letterCombinations l1;
 	Solution l2;
