@@ -7,7 +7,30 @@
 
 int main()
 {
-	ListNode node1 = ListNode(1);
+	vector<int> nums = {1, 3, 2};
+	nextPermutation(nums);
+	for (int i = 0; i < nums.size(); i++)
+	{
+		cout << nums[i] << "  ";
+	}
+
+
+
+
+	/*Solution_22 S_22;
+	S_22.generateParenthesis(10);*/
+
+
+
+
+
+
+
+
+
+
+
+	/*ListNode node1 = ListNode(1);
 	ListNode node2 = ListNode(2);
 	ListNode node3 = ListNode(4);
 	node1.next = &node2;
@@ -26,7 +49,7 @@ int main()
 	{
 		cout << a->val << "  ";
 		a = a->next;
-	}
+	}*/
 
 
 

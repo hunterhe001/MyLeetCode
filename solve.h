@@ -487,3 +487,132 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
 	head->next = NULL;
 	return dummy->next;
 }
+
+//21.µÝ¹é·½·¨
+ListNode* mergeTwoLists_1(ListNode* l1, ListNode* l2)
+{
+	if (l1 == NULL)
+		return l2;
+	if (l2 == NULL)
+		return l1;
+	if (l1->val < l2->val)
+	{
+		l1->next = mergeTwoLists_1(l1->next, l2);
+		return l1;
+	}
+	else
+	{
+		l2->next = mergeTwoLists_1(l2->next, l1);
+		return l2;
+	}
+}
+
+//22.
+class Solution_22 {
+public:
+	string s1;
+	vector<string> vs;
+	vector<string> generateParenthesis(int n) {
+		dfs(n, n, s1);
+		
+		//for (int i = 0; i < vs.size(); i++)
+		//{
+		//	cout << vs[i] << endl;
+		//}
+		return vs;
+	}
+
+	void dfs(int left, int right, string s1)
+	{
+		if (left == 0 && right == 0)
+		{
+			vs.push_back(s1);
+			return;
+		}
+		if (left > right)
+		{
+			return;
+		}
+		if (left > 0)
+		{
+			dfs(left - 1, right, s1 + '(');
+		}
+		if (right > 0)
+		{
+			dfs(left, right - 1, s1 + ')');
+		}
+	}
+
+};
+
+//23.
+ListNode* mergeKLists(vector<ListNode*>& lists) 
+{
+	ListNode* head = new ListNode(0);
+	ListNode* dummy = head;
+	//int flag = 1;
+	int minloc = 0;
+	int i, j;
+	while (1)
+	{
+		for (i = 0; i < lists.size(); i++)
+		{
+			if (lists[i])
+			{
+				minloc = i;
+				break;
+			}
+		}
+		if (i == lists.size())
+		{
+			break;
+		}
+		for (; i < lists.size(); i++)
+		{
+			
+			if (lists[i] && (lists[i]->val <= lists[minloc]->val))
+			{
+				//flag = 1;
+				minloc = i;
+			}
+		}
+		head->next = lists[minloc];
+		head = head->next;
+		lists[minloc] = lists[minloc]->next;
+	}
+	return dummy->next;
+
+}
+
+//31.
+void nextPermutation(vector<int>& nums) 
+{
+	int i, j, tmp;
+	if (nums.size() == 1)
+		return;
+	for (i = nums.size() - 2; i >= 0; i--)
+	{
+		tmp = nums[i];
+		if (tmp < nums[nums.size() - 1])
+		{
+			for (j = i + 1; j < nums.size(); j++)
+			{
+				if (tmp < nums[j])
+				{
+					nums[i] = nums[j];
+					nums[j] = tmp;
+					return;
+				}
+			}
+			
+		}
+		else
+		{
+			for (j = i + 1; j < nums.size(); j++)
+			{
+				nums[j - 1] = nums[j];
+			}
+			nums[nums.size() - 1] = tmp;
+		}
+	}
+}
