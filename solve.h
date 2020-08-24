@@ -450,7 +450,7 @@ bool isValid(string s)
 	}
 	return s1.empty();
 
-}
+ }
 
 //21.
 ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
@@ -615,4 +615,47 @@ void nextPermutation(vector<int>& nums)
 			nums[nums.size() - 1] = tmp;
 		}
 	}
+}
+
+//32.
+int longestValidParentheses(string s) 
+{
+	//"()(()"
+	stack<char> sc;
+	int i, j;
+	int sumlongest = 0;
+	int sumtmp = 0;
+	int top = 0;
+	for (i = 0; i < s.size(); i++)
+	{
+		if (s[i] == ')')
+		{
+			if (sc.empty() || sc.top() != '(')
+			{
+				top = i;
+				sc.push(s[i]);
+				sumtmp = 0;
+			}
+			else if (sc.top() == '(')
+			{
+				sc.pop();
+				sumtmp += 2;
+				if (sumtmp > sumlongest)
+					sumlongest = sumtmp;
+
+			}
+		}
+		else
+		{
+			sc.push(s[i]);
+		}
+		
+	}
+	return sumlongest;
+	
+	
+	
+	
+	
+	
 }

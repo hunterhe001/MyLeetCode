@@ -7,12 +7,20 @@
 
 int main()
 {
-	vector<int> nums = {1, 3, 2};
+
+	cout << longestValidParentheses("()(()") << endl;
+
+	
+
+
+
+
+	/*vector<int> nums = {1, 3, 2};
 	nextPermutation(nums);
 	for (int i = 0; i < nums.size(); i++)
 	{
 		cout << nums[i] << "  ";
-	}
+	}*/
 
 
 
