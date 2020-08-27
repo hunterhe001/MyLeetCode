@@ -621,41 +621,138 @@ void nextPermutation(vector<int>& nums)
 int longestValidParentheses(string s) 
 {
 	//"()(()"
-	stack<char> sc;
+	//"(()"
+	//")()())"
 	int i, j;
+	vector<int> dp(s.size(), 0);
 	int sumlongest = 0;
-	int sumtmp = 0;
-	int top = 0;
 	for (i = 0; i < s.size(); i++)
 	{
 		if (s[i] == ')')
 		{
-			if (sc.empty() || sc.top() != '(')
+			if (i >= 1 && s[i - 1] == '(')
 			{
-				top = i;
-				sc.push(s[i]);
-				sumtmp = 0;
+				if (i >= 2)
+				{
+					dp[i] = dp[i - 2] + 2;
+				}
+				else
+				{
+					dp[i] = 2;
+				}
 			}
-			else if (sc.top() == '(')
+			if (i >= 1 && s[i - 1] == ')' && s[i - dp[i - 1] - 1] == '(')
 			{
-				sc.pop();
-				sumtmp += 2;
-				if (sumtmp > sumlongest)
-					sumlongest = sumtmp;
-
+				if ((i - dp[i - 1]) >= 2)
+				{
+					dp[i] = dp[i - 1] + dp[i - dp[i - 1] - 2] + 2;
+				}
+				else
+				{
+					dp[i] = dp[i - 1] + 2;
+				}
 			}
-		}
-		else
-		{
-			sc.push(s[i]);
+			sumlongest = max(sumlongest, dp[i]);
 		}
 		
 	}
+	
 	return sumlongest;
 	
-	
-	
-	
-	
-	
+}
+
+
+//33.
+class Solution_33 {
+public:
+	int target;
+	int search(vector<int>& nums, int target) {
+		if (nums.size() == 0) return -1;
+		if (nums.size() == 1)
+		{
+			return nums[0] == target ? 0 : -1;
+		}
+		int middle;
+		int left = 0, right = nums.size() - 1;
+		while (left < right)
+		{
+			middle = (left + right) / 2;
+			if (nums[middle] == target)
+			{
+				return middle;
+			}
+			if (nums[0] < nums[middle])
+			{
+				if (nums[0] < target && target < nums[middle - 1])
+				{
+					right = middle - 1;
+				}
+				else
+				{
+					left = middle + 1;
+				}
+			}
+			else
+			{
+				if (nums[middle] < target && target < nums[nums.size() - 1])
+				{
+					left = left + 1;
+				}
+				else
+				{
+					right = right - 1;
+				}
+			}
+			
+		}
+		return -1;
+	}
+};
+
+//34.
+vector<int> searchRange(vector<int>& nums, int target)
+{
+	vector<int> a(2, -1);
+	int n = nums.size();
+	if (!n) return a;
+	if (n == 1)
+	{
+		if (nums[0] == target)
+		{
+			a[0] = a[1] = 0;
+			return a;
+		}
+		else
+		{
+			return a;
+		}
+			
+	}
+	int left = 0, right = n - 1, middle;
+	int l, r;
+	while (left <= right)
+	{
+		middle = (left + right) / 2;
+		if (nums[middle] == target)
+		{
+			l = r = middle;
+			while (l >= 0 && nums[l] == target)
+				l--;
+			a[0] = l + 1;
+			while (r < n && nums[r] == target)
+				r++;
+			a[1] = r - 1;
+			return a;
+				
+		}
+		else if (target < nums[middle])
+		{
+			right = middle - 1;
+		}
+		else
+		{
+			left = middle + 1;
+		}
+	}
+	return a;
 }

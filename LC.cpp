@@ -8,7 +8,16 @@
 int main()
 {
 
-	cout << longestValidParentheses("()(()") << endl;
+	vector<int> nums = { 1, 4};
+	vector<int> b = searchRange(nums, 4);
+	cout << 1;
+
+
+
+
+
+
+	//cout << longestValidParentheses("()(()") << endl;
 
 	
 
