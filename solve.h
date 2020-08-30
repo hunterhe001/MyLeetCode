@@ -834,6 +834,7 @@ public:
 	int sum = 0;
 	vector<vector<int>> permute(vector<int>& nums)
 	{
+		vector<int> used(nums.size(), 0);
 		dfs(nums);
 		return rv;
 	}
@@ -875,5 +876,34 @@ public:
 			//}
 		}
 		
+	}
+	void dfs2(vector<int>& nums, vector<int>& used, vector<vector<int>>& res)
+	{
+		if (tmp.size() == nums.size())
+		{
+			rv.push_back(tmp);
+			return;
+		}
+
+		for (int i = 0; i < nums.size(); i++)
+		{
+			//hashset.insert(nums[i]);
+			//hashset.insert(nums[i]);
+			tmp.push_back(nums[i]);
+			//hashset.insert(nums[i]);
+			dfs(nums);
+			tmp.pop_back();
+			//hashset.erase(nums[i]);
+			//hashset.(nums[i]);
+			//if (hashset.find(nums[i]) == hashset.end())
+			//{
+			//	cout << sum++;
+			//	hashset.insert(nums[i]);
+			//	tmp.push_back(nums[i]);
+			//	dfs(nums);
+			//	//tmp.pop_back();
+			//}
+		}
+
 	}
 };
