@@ -756,3 +756,124 @@ vector<int> searchRange(vector<int>& nums, int target)
 	}
 	return a;
 }
+
+//39.
+class Solution_39 {
+public:
+	vector<vector<int>> rv;
+	//int sum = 0;
+	vector<int> tmp;
+	
+	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+		sort(candidates.begin(), candidates.end());
+		//int i = 0;
+		//sum = 0;
+		dfs(candidates, target, 0, 0);
+		return rv;
+	}
+	void dfs(vector<int>& candidates, int target, int i, int sum)
+	{
+		
+		//int j;
+		if (sum > target)
+		{
+			return;
+		}
+		if (sum == target)
+		{
+			rv.push_back(tmp);
+			return;
+			
+		}
+		
+		for (int k = i; k < candidates.size(); k++)
+		{
+			tmp.push_back(candidates[k]);
+			dfs(candidates, target, k, sum + candidates[k]);
+			tmp.pop_back();
+		}
+		
+		//return;
+	}
+};
+
+//42.
+int trap1(vector<int>& height) {
+	if (height.size() <= 2)
+		return 0;
+	vector<int> newheight(height);
+	int i;
+	int tmp;
+	int maxloc = height[0] > height[1] ? 0 : 1;
+	int sumbetween = 0;
+	int sumall = 0;
+	for (i = 2; i < height.size(); i++)
+	{
+		for (int j = maxloc + 1; j < i; j++)
+		{
+			newheight[j] = max(min(height[i], height[maxloc]), newheight[j]);
+		}
+		if (height[i] >= height[maxloc])
+		{
+			maxloc = i;
+		}
+	}
+	for (i = 0; i < height.size(); i++)
+	{
+		sumall += (newheight[i] - height[i]);
+	}
+	return sumall;
+}
+
+//46.
+class Solution_46 {
+public:
+	unordered_set<int> hashset;
+	vector<vector<int>> rv;
+	vector<int> tmp;
+	int sum = 0;
+	vector<vector<int>> permute(vector<int>& nums)
+	{
+		dfs(nums);
+		return rv;
+	}
+	void dfs(vector<int>& nums)
+	{
+		if (tmp.size() == nums.size())
+		{
+			for (int k = 0; k < nums.size(); k++)
+			{
+				hashset.insert(tmp[k]);
+			}
+			if (hashset.size() == tmp.size())
+			{
+				rv.push_back(tmp);
+			}
+			hashset.clear();
+			return;
+			
+			
+		}
+		
+		for (int i = 0; i < nums.size(); i++)
+		{
+			//hashset.insert(nums[i]);
+			//hashset.insert(nums[i]);
+			tmp.push_back(nums[i]);
+			//hashset.insert(nums[i]);
+			dfs(nums);
+			tmp.pop_back();
+			//hashset.erase(nums[i]);
+			//hashset.(nums[i]);
+			//if (hashset.find(nums[i]) == hashset.end())
+			//{
+			//	cout << sum++;
+			//	hashset.insert(nums[i]);
+			//	tmp.push_back(nums[i]);
+			//	dfs(nums);
+			//	//tmp.pop_back();
+			//}
+		}
+		
+	}
+};

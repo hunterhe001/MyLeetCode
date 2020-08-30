@@ -8,8 +8,10 @@
 int main()
 {
 
-	vector<int> nums = { 1, 4};
-	vector<int> b = searchRange(nums, 4);
+	
+	vector<int> nums = { 1};
+	Solution_46 S46;
+	vector<vector<int>> rv = S46.permute(nums);
 	cout << 1;
 
 
