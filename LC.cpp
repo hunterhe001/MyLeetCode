@@ -9,7 +9,7 @@ int main()
 {
 
 	
-	vector<int> nums = { 1};
+	vector<int> nums = { 1, 2, 3};
 	Solution_46 S46;
 	vector<vector<int>> rv = S46.permute(nums);
 	cout << 1;

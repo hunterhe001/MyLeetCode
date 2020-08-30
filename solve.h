@@ -834,50 +834,51 @@ public:
 	int sum = 0;
 	vector<vector<int>> permute(vector<int>& nums)
 	{
+		//vector<int> tmp;
 		vector<int> used(nums.size(), 0);
-		dfs(nums);
+		dfs2(nums, used);
 		return rv;
 	}
-	void dfs(vector<int>& nums)
-	{
-		if (tmp.size() == nums.size())
-		{
-			for (int k = 0; k < nums.size(); k++)
-			{
-				hashset.insert(tmp[k]);
-			}
-			if (hashset.size() == tmp.size())
-			{
-				rv.push_back(tmp);
-			}
-			hashset.clear();
-			return;
-			
-			
-		}
-		
-		for (int i = 0; i < nums.size(); i++)
-		{
-			//hashset.insert(nums[i]);
-			//hashset.insert(nums[i]);
-			tmp.push_back(nums[i]);
-			//hashset.insert(nums[i]);
-			dfs(nums);
-			tmp.pop_back();
-			//hashset.erase(nums[i]);
-			//hashset.(nums[i]);
-			//if (hashset.find(nums[i]) == hashset.end())
-			//{
-			//	cout << sum++;
-			//	hashset.insert(nums[i]);
-			//	tmp.push_back(nums[i]);
-			//	dfs(nums);
-			//	//tmp.pop_back();
-			//}
-		}
-		
-	}
-	void dfs2(vector<int>& nums, vector<int>& used, vector<vector<int>>& res)
+	//void dfs(vector<int>& nums)
+	//{
+	//	if (tmp.size() == nums.size())
+	//	{
+	//		for (int k = 0; k < nums.size(); k++)
+	//		{
+	//			hashset.insert(tmp[k]);
+	//		}
+	//		if (hashset.size() == tmp.size())
+	//		{
+	//			rv.push_back(tmp);
+	//		}
+	//		hashset.clear();
+	//		return;
+	//		
+	//		
+	//	}
+	//	
+	//	for (int i = 0; i < nums.size(); i++)
+	//	{
+	//		//hashset.insert(nums[i]);
+	//		//hashset.insert(nums[i]);
+	//		tmp.push_back(nums[i]);
+	//		//hashset.insert(nums[i]);
+	//		dfs(nums);
+	//		tmp.pop_back();
+	//		//hashset.erase(nums[i]);
+	//		//hashset.(nums[i]);
+	//		//if (hashset.find(nums[i]) == hashset.end())
+	//		//{
+	//		//	cout << sum++;
+	//		//	hashset.insert(nums[i]);
+	//		//	tmp.push_back(nums[i]);
+	//		//	dfs(nums);
+	//		//	//tmp.pop_back();
+	//		//}
+	//	}
+	//	
+	//}
+	void dfs2(vector<int>& nums, vector<int>& used)
 	{
 		if (tmp.size() == nums.size())
 		{
@@ -887,12 +888,20 @@ public:
 
 		for (int i = 0; i < nums.size(); i++)
 		{
+			if (!used[i])
+			{
+				tmp.push_back(nums[i]);
+				used[i] = 1;
+				dfs2(nums, used);
+				tmp.pop_back();
+				used[i] = 0;
+			}
 			//hashset.insert(nums[i]);
 			//hashset.insert(nums[i]);
-			tmp.push_back(nums[i]);
+			//tmp.push_back(nums[i]);
 			//hashset.insert(nums[i]);
-			dfs(nums);
-			tmp.pop_back();
+			//dfs(nums);
+			//tmp.pop_back();
 			//hashset.erase(nums[i]);
 			//hashset.(nums[i]);
 			//if (hashset.find(nums[i]) == hashset.end())
@@ -906,4 +915,14 @@ public:
 		}
 
 	}
+};
+
+
+//47.
+class Solution {
+public:
+	vector<vector<int>> permuteUnique(vector<int>& nums) {
+
+	}
+	void dfs()
 };
