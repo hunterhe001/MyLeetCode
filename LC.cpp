@@ -8,10 +8,18 @@
 int main()
 {
 
-	
-	vector<int> nums = { 1, 2, 3};
-	Solution_46 S46;
-	vector<vector<int>> rv = S46.permute(nums);
+	//[[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+	vector<int> nums1 = { 5,1,9,11 };
+	vector<int> nums2 = { 2,4,8,10 };
+	vector<int> nums3 = { 13,3,6,7 };
+	vector<int> nums4 = { 15,14,12,16};
+	vector<vector<int>> matrix;
+	matrix.push_back(nums1);
+	matrix.push_back(nums2);
+	matrix.push_back(nums3);
+	matrix.push_back(nums4);
+	Solution_48 S48;
+	S48.rotate(matrix);
 	cout << 1;
 
 
