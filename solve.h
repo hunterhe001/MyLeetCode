@@ -1076,12 +1076,13 @@ public:
 	bool canJump(vector<int>& nums) {
 		int i, j;
 		int before = nums[0], now = nums[0];
-		int maxreach = 0;
-		for (i = 0; i < nums.size(); i++)
+		int maxbn, maxreach = 0;
+		for (i = 0; i < nums.size(); i++)//5,9,3,2,1,0,2,3,3,1,0,0
 		{
 			before = now;
 			now = nums[i] + i;
-			maxreach = max(before, now);
+			maxbn = max(before, now);
+			maxreach = max(maxreach, maxbn);
 			if (maxreach >= nums.size() - 1)
 			{
 				return true;
