@@ -919,10 +919,35 @@ public:
 
 
 //47.
-class Solution {
+class Solution_47 {
 public:
+	vector<vector<int>> res;
+	vector<int> tmp;
 	vector<vector<int>> permuteUnique(vector<int>& nums) {
-
+		vector<int> used(nums.size(), 0);
+		dfs(nums, used);
+		return res;
 	}
-	void dfs()
+	void dfs(vector<int>& nums, vector<int>& used)
+	{
+		unordered_map<int, int> hashmap;
+		if (tmp.size() == nums.size())
+		{
+			res.push_back(tmp);
+			return;
+		}
+		//vector<int> used(nums.size(), 0);
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (!used[i] && (hashmap.find(nums[i]) == hashmap.end()))
+			{
+				hashmap[nums[i]] = i + 1;
+				tmp.push_back(nums[i]);
+				used[i] = 1;
+				dfs(nums, used);
+				tmp.pop_back();
+				used[i] = 0;
+			}
+		}
+	}
 };

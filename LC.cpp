@@ -9,9 +9,9 @@ int main()
 {
 
 	
-	vector<int> nums = { 1, 2, 3};
-	Solution_46 S46;
-	vector<vector<int>> rv = S46.permute(nums);
+	vector<int> nums = { 1};
+	Solution_47 S47;
+	vector<vector<int>> rv = S47.permuteUnique(nums);
 	cout << 1;
 
 
