@@ -951,3 +951,145 @@ public:
 		}
 	}
 };
+////47.
+//class Solution {
+//public:
+//	vector<vector<int>> permuteUnique(vector<int>& nums) {
+//
+//	}
+//	void dfs( )
+//};
+
+//48.
+class Solution_48 {
+public:
+	void rotate(vector<vector<int>>& matrix) {
+		int i, j, tmp;
+		int n = matrix.size();
+		for (i = 0; i < n / 2; i++)
+		{
+			for (j = i; j <= n - 2 - i; j++)
+			{
+				tmp = matrix[i][j];
+				matrix[i][j] = matrix[n - 1 - j][i];
+				matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+				matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+				matrix[j][n - 1 - i] = tmp;
+			}
+		}
+	}
+};
+
+//49.
+class Solution_49 {
+public:
+	vector<vector<string>> groupAnagrams(vector<string>& strs) {
+		vector<vector<string>> vvs;
+		vector<string> vs;
+		string tmpstrs = strs[0];
+		vector<int> vitmp(26, 0);
+		int i, j, k, flag;
+		for (i = 0; i < tmpstrs.size(); i++)
+		{
+			vitmp[tmpstrs[i] - 'a']++;
+		}
+		string tmpstr = "";
+		for (i = 0; i < 26; i++)
+		{
+			tmpstr += '#';
+			tmpstr += char(vitmp[i]);
+		}
+		vs.push_back(tmpstr);
+		vector<string> vs1;
+		vs1.push_back(tmpstrs);
+		vvs.push_back(vs1);
+		for (i = 1; i < strs.size(); i++)
+		{
+			tmpstrs = strs[i];
+			vitmp = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+			for (j = 0; j < tmpstrs.size(); j++)
+			{
+				vitmp[tmpstrs[j] - 'a']++;
+			}
+			tmpstr = "";
+			for (j = 0; j < 26; j++)
+			{
+				tmpstr += '#';
+				tmpstr += char(vitmp[j]);
+			}
+			flag = 0;
+			for (j = 0; j < vs.size(); j++)
+			{
+				if (vs[j] == tmpstr)
+				{
+					vvs[j].push_back(tmpstrs);
+					flag = 1;
+					break;
+				}
+			}
+			if (!flag)
+			{
+				vector<string> vs2;
+				vs2.push_back(tmpstrs);
+				vvs.push_back(vs2);
+				vs.push_back(tmpstr);
+			}
+		}
+
+		return vvs;
+	}
+};
+
+
+
+//53.
+class Solution_53 {
+public:
+	int maxSubArray(vector<int>& nums) {
+		int i;
+		/*vector<int> numstmp = nums;
+		sort(numstmp.begin(), numstmp.end());
+		if (numstmp[nums.size() - 1] < 0)
+			return numstmp[nums.size() - 1];*/
+		int maxsum = 0;
+		int rmaxsum = nums[0];
+		for (i = 0; i < nums.size(); i++)
+		{
+			maxsum += nums[i];
+			if (maxsum > rmaxsum)
+			{
+				rmaxsum = maxsum;
+			}
+			if (maxsum < 0)
+			{
+				maxsum = 0;
+			}
+		}
+		return rmaxsum;
+	}
+};
+
+
+//55.
+class Solution_55 {
+public:
+	bool canJump(vector<int>& nums) {
+		int i, j;
+		int before = nums[0], now = nums[0];
+		int maxreach = 0;
+		for (i = 0; i < nums.size(); i++)
+		{
+			before = now;
+			now = nums[i] + i;
+			maxreach = max(before, now);
+			if (maxreach >= nums.size() - 1)
+			{
+				return true;
+			}
+			if (maxreach <= i)
+			{
+				return false;
+			}
+		}
+	}
+};

@@ -7,11 +7,36 @@
 
 int main()
 {
+	//vector<int> nums = { 1};
+	//Solution_47 S47;
+	//vector<vector<int>> rv = S47.permuteUnique(nums);
+	////[[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+	//vector<int> nums1 = { 5,1,9,11 };
+	//vector<int> nums2 = { 2,4,8,10 };
+	//vector<int> nums3 = { 13,3,6,7 };
+	//vector<int> nums4 = { 15,14,12,16};
+	//vector<vector<int>> matrix;
+	//matrix.push_back(nums1);
+	//matrix.push_back(nums2);
+	//matrix.push_back(nums3);
+	//matrix.push_back(nums4);
+	//Solution_48 S48;
+	//S48.rotate(matrix);
 
-	
-	vector<int> nums = { 1};
-	Solution_47 S47;
-	vector<vector<int>> rv = S47.permuteUnique(nums);
+
+	/*Solution_49 S49;
+	vector<string> strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
+	vector<vector<string>> vvs = S49.groupAnagrams(strs);*/
+
+
+	/*vector<int> arry = { -1};
+	Solution_53 S53;
+	int maxsum = S53.maxSubArray(arry);*/
+
+	vector<int> nums = {5,9,3,2,1,0,2,3,3,1,0,0};
+	Solution_55 S55;
+	bool canJump = S55.canJump(nums);
+
 	cout << 1;
 
 
