@@ -1094,3 +1094,88 @@ public:
 		}
 	}
 };
+
+
+//56.
+class Solution_56 {
+public:
+	vector<vector<int>> merge(vector<vector<int>>& intervals) {
+		int i, j, k, min, max;
+		
+	}
+};
+
+
+//57.
+class Solution_57 {
+public:
+	int sum = 0;
+	int uniquePaths(int m, int n) {
+		dfs(m, n, 0, 0);
+		return sum;
+	}
+	void dfs(int m, int n, int i, int j)
+	{
+		if (i == m - 1 && j == n - 1)
+		{
+			sum += 1;
+			return;
+		}
+		int k, l, o;
+		if (i == m - 1)
+		{
+			dfs(m, n, i, j + 1);
+			return;
+		}
+		if (j == n - 1)
+		{
+			dfs(m, n, i + 1, j);
+			return;
+		}
+		dfs(m, n, i, j + 1);
+		dfs(m, n, i + 1, j);
+	}
+};
+
+
+//64.
+class Solution_64 {
+public:
+	int minsum = 0;
+	int minPathSum(vector<vector<int>>& grid) {
+		int m = grid.size();
+		int n = grid[0].size();
+		for (int i = 0; i < n - 1; i++)
+			minsum += grid[0][i];
+		for (int j = 0; j < m; j++)
+			minsum += grid[j][n - 1];
+		//int min = 0;
+		dfs(grid, m, n, 0, 0, 0);
+		return minsum;
+	}
+	void dfs(vector<vector<int>>& grid, int m, int n, int i, int j, int min)
+	{
+		if (i == m - 1 && j == n - 1)
+		{
+			min += grid[i][j];
+			if (min < minsum)
+			{
+				minsum = min;
+			}
+			return;
+		}
+		//int k, l, o;
+		if (i == m - 1)
+		{
+			dfs(grid, m, n, i, j + 1, min + grid[i][j]);
+			return;
+		}
+		if (j == n - 1)
+		{
+			dfs(grid, m, n, i + 1, j, min + grid[i][j]);
+			return;
+		}
+		dfs(grid, m, n, i, j + 1, min + grid[i][j]);
+		dfs(grid, m, n, i + 1, j, min + grid[i][j]);
+	}
+};

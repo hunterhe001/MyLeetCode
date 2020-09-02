@@ -33,10 +33,24 @@ int main()
 	Solution_53 S53;
 	int maxsum = S53.maxSubArray(arry);*/
 
-	vector<int> nums = {5,9,3,2,1,0,2,3,3,1,0,0};
+	/*vector<int> nums = {5,9,3,2,1,0,2,3,3,1,0,0};
 	Solution_55 S55;
-	bool canJump = S55.canJump(nums);
+	bool canJump = S55.canJump(nums);*/
 
+
+	/*Solution_57 S57;
+	int a = S57.uniquePaths(7, 3);
+	cout << 1;*/
+
+	vector<int> v1 = { 1 };
+	/*vector<int> v2 = { 1,5,1 };
+	vector<int> v3 = { 4,2,1 };*/
+	vector<vector<int>> vvi;
+	vvi.push_back(v1);
+	/*vvi.push_back(v2);
+	vvi.push_back(v3);*/
+	Solution_64 S64;
+	int a = S64.minPathSum(vvi);
 	cout << 1;
 
 
